@@ -1,43 +1,49 @@
 # this is an auto generated file. This will be overwritten
-query GetTodo($id: ID!) {
-  getTodo(id: $id) {
+
+query GetUser($id: ID!) {
+  getUser(id: $id) {
     id
-    name
-    description
+    firstName
+    lastName
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
+    __typename
   }
 }
-query ListTodos(
-  $filter: ModelTodoFilterInput
+
+query ListUsers(
+  $filter: ModelUserFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
-      description
+      firstName
+      lastName
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
     nextToken
     startedAt
+    __typename
   }
 }
-query SyncTodos(
-  $filter: ModelTodoFilterInput
+
+query SyncUsers(
+  $filter: ModelUserFilterInput
   $limit: Int
   $nextToken: String
   $lastSync: AWSTimestamp
 ) {
-  syncTodos(
+  syncUsers(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -45,15 +51,50 @@ query SyncTodos(
   ) {
     items {
       id
-      name
-      description
+      firstName
+      lastName
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
     nextToken
     startedAt
+    __typename
+  }
+}
+
+query UsersByLastNameAndCreatedAt(
+  $lastName: String!
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  usersByLastNameAndCreatedAt(
+    lastName: $lastName
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
   }
 }
